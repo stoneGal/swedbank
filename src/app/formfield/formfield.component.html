@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="forms">
+
+        <!--<p>Form value: {{ angForm.value | json }}</p>
+            <p>Form status: {{ angForm.status | json }}</p>-->
+        <!--<form [formGroup]="myForm" novalidate>-->
+        <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+            <ng-container *ngFor="let item of questions;let i = index">
+                <div [hidden]="item.isHidden" class="questions">
+                    {{item.description}}
+                    <input [formControlName]="item.type" placeholder="{{item.placeholder}}" style="font-style: italic; font-size: medium; ">
+
+                    <br>
+                    <div class="btnbtn">
+
+                        <!--<button (click)="questions[i].isHidden = true;questions[i -1] ?questions[i -1].isHidden = false : false" class="button" [disabled]="userForm.value[item.type]=='' ">Back</button>-->
+                        <button (click)="questions[i].isHidden = true;questions[i + 1] ?questions[i + 1].isHidden = false : false" class="button" [disabled]="userForm.value[item.type]=='' ">Next</button>
+                    </div>
+
+                </div>
+            </ng-container>
+        </form>
+        <!--<p>Form value: {{ userForm.value }}</p>-->
+        <!--</div>-->
+    </div>
+</div>
+
+<app-footer></app-footer>
